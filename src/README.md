@@ -8,7 +8,6 @@
 </div>
 
 ## Table of Contents
-
 - [1. About Zava](#1-about-zava)
 - [2. Quick Start (Recommended)](#2-quick-start-recommended)
 - [3. Manual Setup (Alternative)](#3-manual-setup-alternative)
@@ -38,7 +37,9 @@
   - [7.4 Data and RAG Issues](#74-data-and-rag-issues)
   - [7.5 Browser Issues](#75-browser-issues)
   - [7.6 Application Modes](#76-application-modes)
-- [8. Mock Demo](#8-mock-demo)
+- [8. Demo Test Run](#8-demo-test-run)
+  - [8.1 Mock Demo](#81-mock-demo)
+  - [8.2 Live Demo](#82-live-demo)
 
 <div style="width: 100%; height: 4px; background: linear-gradient(90deg, #1e3a8a 0%, #0d9488 50%, #06b6d4 100%); margin: 2rem 0; border-radius: 2px;"></div>
 
