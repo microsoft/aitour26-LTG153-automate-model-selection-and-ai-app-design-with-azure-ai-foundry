@@ -1,0 +1,116 @@
+{
+    "Finance": [
+        {
+            "id": "fin-1",
+            "title": "Invoice Processing",
+            "prompt": "Extract invoice totals and vendor names from the accounting system.",
+            "complexity": "Low",
+            "qualityExpectation": "Fast, basic accuracy",
+            "output": "Output:<br>- Vendor: Acme Corp, Total: $12,500<br>- Vendor: BlueSky Ltd, Total: $8,200<br>- Vendor: Zava Supplies, Total: $3,450",
+            "source_data_file": "finance/invoice_data.json"
+        },
+        {
+            "id": "fin-2",
+            "title": "Expense Report Audit",
+            "prompt": "Flag any expense reports with out-of-policy items for review from the Expense reporting system.",
+            "complexity": "Medium",
+            "qualityExpectation": "Moderate accuracy",
+            "output": "Output:<br>- Report #1042: $1,200 hotel expense flagged (policy max: $900)<br>- Report #1055: $350 meal expense flagged (missing receipt)",
+            "source_data_file": "finance/expense_reports.json"
+        },
+        {
+            "id": "fin-3",
+            "title": "Financial Forecasting",
+            "prompt": "Perform a multi-step financial analysis: (1) Clean and aggregate the historical sales data by region and product line, (2) detect any outliers or anomalous spikes with justification, (3) generate a quarterly revenue forecast for the next two quarters using at least two comparative methods (e.g., moving average vs. year-over-year trend), (4) quantify forecast confidence with an explanation of assumptions (seasonality, growth drivers), and (5) list three strategic actions Finance leadership should consider based on the projection.",
+            "complexity": "High",
+            "qualityExpectation": "High accuracy, explainable",
+            "output": "Output:<br>Q4 Forecast: $2,450,000 (+6% YoY)<br>Key drivers: Increased sales in North America, new product launch<br>Confidence: 92%",
+            "source_data_file": "finance/historical_sales.csv"
+        },
+        {
+            "id": "fin-4",
+            "title": "Regulatory Compliance Check",
+            "prompt": "Conduct a structured regulatory review of the SEC filing excerpt: (1) Extract and categorize all risk statements (privacy, cybersecurity, litigation, financial reporting), (2) identify any implicit (unstated but inferred) compliance vulnerabilities, (3) map each finding to likely regulatory frameworks (e.g., SOX, GDPR, SEC disclosure obligations) with rationale, (4) prioritize risks by potential impact and likelihood, and (5) recommend remediation steps with owners and 30/60/90 day milestones. Flag any ambiguous disclosure gaps; cite the originating clause. Provide a final compliance risk register with severity scoring and rationale.",
+            "complexity": "High",
+            "qualityExpectation": "High accuracy, legal compliance",
+            "output": "Output:<br>- Risk: Data privacy disclosures incomplete<br>- Risk: Unresolved litigation noted in section 4.2<br>- Recommendation: Update privacy section, consult legal team",
+            "source_data_file": "finance/sec_filing_snippet.txt"
+        }
+    ],
+    "Marketing": [
+        {
+            "id": "mkt-1",
+            "title": "Social Media Sentiment",
+            "prompt": "Analyze sentiment of the recent social media mentions about Zava.",
+            "complexity": "Low",
+            "qualityExpectation": "Fast, basic accuracy",
+            "output": "Output:<br>Overall sentiment: 78% positive, 15% neutral, 7% negative<br>Top themes: Product reliability, customer service<br>Sample tweet: “Love Zava’s new update!”",
+            "source_data_file": "marketing/social_media_mentions.json"
+        },
+        {
+            "id": "mkt-2",
+            "title": "Campaign Performance Summary",
+            "prompt": "Summarize the performance of last month’s email campaign from the marketing database.",
+            "complexity": "Medium",
+            "qualityExpectation": "Moderate accuracy",
+            "output": "Output:<br>- Open rate: 42%<br>- Click-through rate: 8.5%<br>- Top segment: Retail customers<br>- Recommendation: Refine subject lines for next campaign",
+            "source_data_file": "marketing/campaign_performance.csv"
+        },
+        {
+            "id": "mkt-3",
+            "title": "Customer Segmentation",
+            "prompt": "Execute an advanced segmentation workflow: (1) Normalize and group customers by purchase frequency, recency, and monetary value, (2) calculate RFM-style tiers, (3) enrich segments with demographic overlays (age band, geography), (4) identify at least two emerging micro-segments with growth potential and explain detection criteria, (5) output a tabular summary plus a strategic narrative recommending tailored engagement tactics for each top segment.",
+            "complexity": "High",
+            "qualityExpectation": "High accuracy, actionable insights",
+            "output": "Output:<br>- Segment 1: Frequent buyers, age 30-45, urban<br>- Segment 2: Occasional buyers, age 50+, suburban<br>- Segment 3: New customers, age 20-29, mixed locations",
+            "source_data_file": "marketing/customer_data.csv"
+        },
+        {
+            "id": "mkt-4",
+            "title": "Brand Reputation Analysis",
+            "prompt": "Perform a multi-layer brand reputation assessment with traceable justification for each inference: (1) Extract sentiment and classify posts into themes (logistics, quality, pricing, support), (2) detect any accelerating negative trend with supporting evidence, (3) correlate negative clusters with potential root causes, (4) propose a prioritized mitigation playbook (immediate / short-term / medium-term), and (5) draft two executive summary bullets suitable for a quarterly board slide.",
+            "complexity": "High",
+            "qualityExpectation": "High accuracy, nuanced analysis",
+            "output": "Output:<br>- Risk: Complaints about delivery delays in Europe<br>- Risk: Negative reviews on product durability<br>- Action: Address logistics, launch quality assurance campaign",
+            "source_data_file": "marketing/brand_reputation_forums.json"
+        }
+    ],
+    "Development": [
+        {
+            "id": "prd-1",
+            "title": "Bug Triage",
+            "prompt": "Summarize and categorize incoming bug reports from the issue tracking system.",
+            "complexity": "Low",
+            "qualityExpectation": "Fast, basic accuracy",
+            "output": "Output:<br>- 12 UI bugs (login issues, display errors)<br>- 5 performance bugs (slow load times)<br>- 2 security bugs (password reset flaw)",
+            "source_data_file": "development/bug_reports.json"
+        },
+        {
+            "id": "prd-2",
+            "title": "Feature Request Analysis",
+            "prompt": "Cluster feature requests by theme and urgency from the product backlog data.",
+            "complexity": "Medium",
+            "qualityExpectation": "Moderate accuracy",
+            "output": "Output:<br>- Theme: Mobile app improvements (high urgency)<br>- Theme: New payment options (medium urgency)<br>- Theme: Dark mode (low urgency)",
+            "source_data_file": "development/feature_requests.json"
+        },
+        {
+            "id": "prd-3",
+            "title": "Product Launch Planning",
+            "prompt": "Construct a comprehensive launch program: (1) Parse the notes to identify key milestones and dependencies, (2) develop a phased timeline (alpha, beta, GA) with critical path justification, (3) enumerate operational, technical, regulatory, and market risks with probability/impact scoring, (4) propose mitigation and contingency triggers, (5) define 5 KPIs for post-launch success monitoring with measurement approaches, and (6) provide an executive summary for leadership approval.",
+            "complexity": "High",
+            "qualityExpectation": "High accuracy, strategic detail",
+            "output": "Output:<br>- Timeline: Beta in October, full launch in December<br>- Risks: Supply chain delays, regulatory approval<br>- Mitigation: Early vendor engagement, compliance review",
+            "source_data_file": "development/product_launch_notes.md"
+        },
+        {
+            "id": "prd-4",
+            "title": "Competitive Analysis",
+            "prompt": "Classification: High reasoning complexity – requires feature synthesis, strategic scenario inference, and competitive countermove anticipation.Deliver a comparative intelligence brief: (1) Build a feature matrix contrasting Zava vs each competitor (coverage, differentiation, gaps), (2) assess strategic positioning (price/value, ecosystem openness, data privacy posture), (3) infer likely competitor countermoves over the next two quarters, (4) recommend 3 offensive and 3 defensive strategic actions for Zava with rationale, and (5) produce a concise exec summary highlighting sustainable differentiators.",
+            "complexity": "High",
+            "qualityExpectation": "High accuracy, detailed comparison",
+            "output": "Output:<br>- Zava’s strengths: Faster setup, better customer support<br>- Competitor A: Lower price, fewer integrations<br>- Competitor B: Advanced analytics, higher complexity<br>- Recommendation: Highlight ease-of-use in marketing",
+            "source_data_file": "development/competitive_analysis.md"
+        }
+    ]
+}

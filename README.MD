@@ -20,15 +20,18 @@ As 85% of enterprises embrace multi-model AI strategies, developers face growing
 
 By the end of this session, learners will be able to:
 
--  
--
--
+- Describe what Model Router does, and why that helps
+- Deploy and use a Model Router in Azure AI Foundry
+- Deploy a Benchmark model - and compare their results
+- Analyze the cost and latency optimization achieved
 
 ### 💻 Technologies Used
 
-1.
-1.
-1.
+1. **Azure AI Foundry** - Unified end-to-end AI development platform 
+1. **Model Router** - My primary model deployment (smart router)
+1. **Azure OpenAI Service** - My Benchmark model deployment (GPT-5) 
+1. **React + Vite** - Building the frontend UI/UX
+1. **Flask + Python** - Building the backend API server
 
 ### 🔗 Session Resources
 | Resources          | Links                             | Description        |
@@ -56,19 +59,19 @@ Additional Languages Coming Soon
 
 <table>
 <tr>
-    <td align="center"><a href="http://github.com/mikekinsman">
-        <img src="https://github.com/mikekinsman.png" width="100px;" alt="INSERT NAME HERE"
+    <td align="center"><a href="http://github.com/sanjeev3">
+        <img src="https://github.com/sanjeev3.png" width="100px;" alt="SANJEEV JAGTAP"
 "/><br />
-        <sub><b> INSERT NAME HERE
+        <sub><b> SANJEEV JAGTAP
 </b></sub></a><br />
-            <a href="https://github.com/mikekinsman" title="talk">📢</a> 
+            <a href="https://github.com/sanjeev3" title="talk">📢</a> 
     </td>
-    <td align="center"><a href="http://github.com/mikekinsman">
-        <img src="https://github.com/mikekinsman.png" width="100px;" alt="INSERT NAME HERE
+    <td align="center"><a href="http://github.com/nitya">
+        <img src="https://github.com/nitya.png" width="100px;" alt="NITYA NARASIMHAN
 "/><br />
-        <sub><b>INSERT NAME HERE
+        <sub><b>NITYA NARASIMHAN
 </b></sub></a><br />
-            <a href="https://github.com/mikekinsman" title="talk">📢</a> 
+            <a href="https://github.com/nitya" title="talk">📢</a> 
     </td>
 </tr></table>
 
