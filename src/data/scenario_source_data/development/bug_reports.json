@@ -1,0 +1,7 @@
+[
+  {"id": "BUG-001", "title": "Login button unresponsive on mobile", "description": "When using the app on a mobile device, the login button does not respond to taps.", "type": "UI"},
+  {"id": "BUG-002", "title": "App crashes on startup", "description": "The app crashes immediately after opening on Android 13.", "type": "Performance"},
+  {"id": "BUG-003", "title": "Password reset link is broken", "description": "The link sent to reset a password leads to a 404 page.", "type": "Security"},
+  {"id": "BUG-004", "title": "Incorrect data displayed on dashboard", "description": "The dashboard is showing data from the previous day.", "type": "Performance"},
+  {"id": "BUG-005", "title": "Text overlaps on the settings page", "description": "On the settings page, some of the text labels overlap with the input fields.", "type": "UI"}
+]
