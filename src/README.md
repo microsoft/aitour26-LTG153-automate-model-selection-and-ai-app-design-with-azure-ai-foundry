@@ -9,14 +9,13 @@
 
 ## Table of Contents
 - [1. About Zava](#1-about-zava)
-- [2. Quick Start (Recommended)](#2-quick-start-recommended)
-- [3. Manual Setup (Alternative)](#3-manual-setup-alternative)
-  - [3.1 Prerequisites](#31-prerequisites)
-  - [3.2 Model Configuration](#32-model-configuration)
-  - [3.3 Pricing Configuration](#33-pricing-configuration)
-  - [3.4 Install Dependencies](#34-install-dependencies)
-  - [3.5 Run the Application](#35-run-the-application)
-  - [3.6 Access the Application](#36-access-the-application)
+- [2. Demo Mode (Live vs. Mock)](#2-demo-mode-live-vs-mock)
+  - [2.1 Model Deployments (Live Demo)](#21-model-deployments-live-demo)
+  - [2.2 Synthetic Data (Mock Demo)](#22-synthetic-data-mock-demo)
+- [3. Demo Setup](#3-demo-setup)
+  - [3.1 Using GitHub Codespaces (Recommended)](#31-using-github-codespaces-recommended)
+  - [3.2 Using PowerShell Script](#32-using-powershell-script)
+  - [3.3 Using Manual Setup](#33-using-manual-setup)
 - [4. Project Architecture](#4-project-architecture)
   - [4.1 Technical Details](#41-technical-details)
   - [4.2 Data Structure for RAG](#42-data-structure-for-rag)
@@ -52,48 +51,22 @@ This demo shows how the _Model Router_ can simplify their AI application design 
 
 <br/>
 
-## 2. Quick Start (Recommended)
+## 2. Demo Mode (Live vs. Mock)
 
-This method uses a PowerShell script to automate the entire setup and launch process.
-
-1.  **Configure Credentials (for Live Mode):**
-    - In the project root, copy the `.env.example` file and rename it to `.env`.
-    - Open the new `.env` file and fill in your Azure OpenAI credentials.
-    - If you skip this, the app will run in Mock Mode.
-
-2.  **Run the Startup Script:**
-    - Open a PowerShell terminal in the project root directory.
-    - Execute the script:
-      ```powershell
-      .\start-demo.ps1
-      ```
-    - The script will install all dependencies and launch the frontend and backend servers in new terminal windows.
-
-3.  **Access the Application:**
-    - Open your web browser and navigate to `http://localhost:5173`.
+The repository is setup to allow two modes: _Live_ (with model deployments) and _Mock_ (with synthetic data). To run live demos, complete step 1 for model deployments. To run synthetic demos, review step 2 to change the default data if required.
 
 
-<br/>
+### 2.1 Model Deployments (Live Demo)
+In this section, we will set up the Azure AI Foundry project for **live mode** demos. If you skip this section, the default demo experience will use the **mock mode** with synthetic data.
 
-## 3. Manual Setup (Alternative)
-
-Follow these steps if you are not using PowerShell or prefer to run each component manually.
-
-### 3.1 Prerequisites
-
-Ensure you have the following installed:
-- **Python** (Version 3.10 or newer)
-- **Node.js** (Version 18.x or newer) and **npm**
-
-### 3.2 Model Configuration
-
-1. Create an Azure AI Foundry Project
+1. **Create an Azure AI Foundry Project**
     - Visit https://ai.azure.com and log in
     - Click "Create New Project" and complete workflow
-1. Deploy two models 
-    - the primary model = `model-router` - the primary model
-    - the benchmark model = `gpt-5` or `gpt-4.1`
-1. Configure environment variables 
+1. **Deploy Primary & Benchmark Models**
+    - Click on `Models+Endpoints` in the project Overview page
+    - Search for `model-router` - deploy it as the primary model
+    - Search for `gpt-5` or `gpt-4.1` - deploy as benchmark model
+1. **Configured Local Environment Variables**
     - copy `.env.example` to `.env` 
     - update values as shown
       ```bash
@@ -109,12 +82,16 @@ Ensure you have the following installed:
       AZURE_OPENAI_BENCHMARK_API_VERSION="2024-05-01-preview"
       AZURE_OPENAI_BENCHMARK_DEPLOYMENT_NAME="your-benchmark-deployment-name"
       ```
-> [!IMPORTANT]  
-> - If primary credentials are blank, the app will run in Mock Mode with simulated responses.
-> - Benchmark credentials are optional - if not provided, mock benchmark responses are shown.
-> For best results, use a high-quality model like GPT-4 or GPT-5 **for the benchmark**
+    > [!IMPORTANT]  
+    > - If primary credentials are blank, the app will run in Mock Mode with simulated responses.
+    > - Benchmark credentials are optional - if not provided, mock benchmark responses are shown.
+    > For best results, use a high-quality model like GPT-4 or GPT-5 **for the benchmark**
 
-### 3.3 Pricing Configuration
+  1. Congratulations! You are ready to run the live demo!
+
+### 2.2 Synthetic Data (Mock Demo)
+
+**This becomes the default mode if `.env` is missing or has no values filled**..
 
 The `src/` folder contains a `data/pricing.json` file that provides synthetic pricing configuration  data for the cost calculations and ROI demonstrations.
 
@@ -124,80 +101,120 @@ The `src/` folder contains a `data/pricing.json` file that provides synthetic pr
 - ✅ **Real-time Cost Calculations**: All cost displays use current pricing data
 - ✅ **ROI Demonstrations**: Side-by-side cost comparison shows Model Router savings
 
-This is what the default data looks like. 
+**Modify Demo Data:** 
 
-```json
-# Edit data/pricing.json to update model pricing
-{
-  "pricing_info": {
-    "description": "Model pricing configuration per 1M tokens (input/output)",
-    "last_updated": "2025-09-16",
-    "currency": "USD"
-  },
-  "models": {
-    "model-router": {
-      "input_per_1m": 0.00,
-      "output_per_1m": 0.00,
-      "description": "Model Router - showcases cost savings"
+- This is what the default data looks like. 
+
+  ```json
+  {
+    "pricing_info": {
+      "description": "Model pricing configuration per 1M tokens (input/output)",
+      "last_updated": "2025-09-16",
+      "currency": "USD"
     },
-    "gpt-5": {
-      "input_per_1m": 1.25,
-      "output_per_1m": 10.00,
-      "description": "Premium model pricing"
-    },
-    "default": {
-      "input_per_1m": 5.00,
-      "output_per_1m": 15.00,
-      "description": "Default fallback pricing"
+    "models": {
+      "model-router": {
+        "input_per_1m": 0.00,
+        "output_per_1m": 0.00,
+        "description": "Model Router - showcases cost savings"
+      },
+      "gpt-5": {
+        "input_per_1m": 1.25,
+        "output_per_1m": 10.00,
+        "description": "Premium model pricing"
+      },
+      "default": {
+        "input_per_1m": 5.00,
+        "output_per_1m": 15.00,
+        "description": "Default fallback pricing"
+      }
     }
   }
-}
-```
-To update pricing:
-1. Edit `data/pricing.json` with your current model rates
-2. Add new model types as needed under the "models" section
-3. Refresh the browser - changes load automatically
-4. No server restart required for pricing updates
-
-### 3.4 Install Dependencies
-
-- **Backend:**
-  ```bash
-  # Create and activate a Python virtual environment
-  python -m venv .venv
-  # On Windows (pwsh):
-  .venv\Scripts\Activate.ps1
-  # On macOS/Linux:
-  source .venv/bin/activate
-
-  # Install Python packages
-  pip install -r requirements.txt
   ```
+- To update pricing:
+  1. Edit `data/pricing.json` with your current model rates
+  2. Add new model types as needed under the "models" section
+  3. Refresh the browser - changes load automatically
+  4. No server restart required for pricing updates
 
-- **Frontend:**
-  ```bash
-  npm install
+
+<br/>
+
+## 3. Demo Setup
+
+The demo has two components - a _Python_ backend Flask app that serves the API, and a _React_ frontend that provides a web-based UI for interaction. Pick one of the 3 options to complete setup.
+
+### 3.1 Using GitHub Codespaces (Recommended)
+
+The repository is instrumented with a `devcontainer.json` that when activated gives you a prebuilt environment with all dependencies installed.
+
+1. [Create a codespace](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=1045171010&skip_quickstart=true) with one click. Wait till it loads in new tab.
+1. You see an active VS Code terminal. Split to get 2 terminals.
+1. **Run Backend Application** in window 1
+    ```
+    cd src && python app.py
+    ```
+1. **Run Backend Application** in window 2
+    ```
+    cd src && npm install && npm run dev
+    ```
+1. **Access the Application** 
+    - You will see a pop-up dialog. Confirm to "Open in browser".
+    - **Congratulations!** Your demo application is ready. 🚀 
+
+
+### 3.2 Using PowerShell Script
+
+- Open a PowerShell terminal in the project root directory.
+- Execute the script. This installs all dependencies and launch the frontend and backend servers in new terminal windows.
+  ```powershell
+  .\start-demo.ps1
   ```
+- Open your web browser and navigate to `http://localhost:5173`.
+- **Congratulations!** Your demo application is ready. 🚀 
 
-### 3.5 Run the Application
 
-You will need two separate terminals.
+### 3.3 Using Manual Setup
 
-- **Terminal 1: Start the Backend**
-  ```bash
-  # Make sure your Python virtual environment is activated
-  python app.py
-  ```
+1. **Pre-requisites**: Check that you have these instealled.
+    - **Python** (Version 3.10 or newer)
+    - **Node.js** (Version 18.x or newer) and **npm**
 
-- **Terminal 2: Start the Frontend**
-  ```bash
-  npm run dev
-  ```
+1. **Install Dependencies For Backend** 
 
-### 3.6 Access the Application
+    ```bash
+    # Create and activate a Python virtual environment
+    python -m venv .venv
+    # On Windows (pwsh):
+    .venv\Scripts\Activate.ps1
+    # On macOS/Linux:
+    source .venv/bin/activate
 
-- Open your browser to `http://localhost:5173`.
+    # Install Python packages
+    pip install -r requirements.txt
+    ```
 
+1. **Install Dependencies For Frontend:** 
+
+    ```
+    npm install
+    ```
+
+1. **Run the Application**.
+    - You will need to open two terminals.
+    - **Terminal 1: Start the Backend**
+      ```bash
+      # Make sure your Python virtual environment is activated
+      python app.py
+      ```
+
+    - **Terminal 2: Start the Frontend**
+      ```bash
+      npm run dev
+      ```
+1. **Access The Application**.
+    - Open your web browser and navigate to `http://localhost:5173`.
+    - **Congratulations!** Your demo application is ready. 🚀 
 
 <br/>
 
