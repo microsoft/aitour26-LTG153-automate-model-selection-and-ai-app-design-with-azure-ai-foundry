@@ -4,7 +4,7 @@
 
 # [Microsoft AI Tour 2026](https://aitour.microsoft.com)
 
-## LTG153 : Automate model selection and AI app design with Azure AI Foundry
+## LTG153 : Automate model selection with Azure AI Foundry Model Router 
 
 [![Microsoft Azure AI Foundry Discord](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://discord.com/invite/ByRwuEEgH4)
 [![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=adff2f&logoColor=fff)](https://aka.ms/foundry/forum)
@@ -13,7 +13,9 @@ If you will be delivering this session, check the [session-delivery-sources](./s
 
 ### Session Description
 
-As 85% of enterprises embrace multi-model AI strategies, developers face growing complexity in selecting and deploying the right models. In this talk, discover how Azure AI Foundry simplifies model selection and deployment with tools like Model Router, automated evaluations, and AI templates.
+> Full Title: <br/> **Automate model selection with Azure AI Foundry Model Router - to fast-track cost efficiencies and win big**
+
+As 85% of enterprises embrace multi-model AI strategies, developers face growing complexity in selecting, deploying, and managing the right models for each task. In this session, discover how the model router in Azure AI Foundry intelligently automates model selection based on performance, cost, and latency. This intelligent orchestration layer reduces operational overhead, accelerates deployment, and unlocks scalable AI operations across your organization. Say goodbye to model fatigue and let the router do the strategic lifting. 
 
 
 ### 🧠 Learning Outcomes
@@ -22,7 +24,7 @@ By the end of this session, learners will be able to:
 
 - Describe what Model Router does, and why that helps
 - Deploy and use a Model Router in Azure AI Foundry
-- Deploy a Benchmark model - and compare their results
+- Deploy a benchmark model - and compare their results
 - Analyze the cost and latency optimization achieved
 
 ### 💻 Technologies Used
@@ -36,6 +38,10 @@ By the end of this session, learners will be able to:
 ### 🔗 Session Resources
 | Resources          | Links                             | Description        |
 |:-------------------|:----------------------------------|:-------------------|
+| Model Router Card | [Azure AI Foundry Catalog](https://ai.azure.com/catalog/models/model-router) | Supported Models, Overview |
+| Model Router Concepts| [Microsoft Learn Docs](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | Benefits & Limitations |
+| Model Router Quickstart| [Microsoft Learn Docs](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/model-router) | Usage in Azure AI Foundry |
+| GPT-5 in Azure AI Foundry | [Microsoft Azure Video](https://www.youtube.com/watch?v=xgdz-KCFpFI&pp=ygUhbW9kZW0gcm91dGVyIGZvciBhenVyZSBhaSBmb3VuZHJ5) | Featuring Model Router |
 | Additional Resources for this session | [https://learn.microsoft.com](https://learn.microsoft.com?ocid=AITour26_resourcecenter_cnl) | Links specific to this session |
 
 ### 📚 Continued Learning Resources
