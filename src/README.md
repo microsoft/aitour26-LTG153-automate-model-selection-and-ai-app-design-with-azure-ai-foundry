@@ -149,7 +149,8 @@ The demo has two components - a _Python_ backend Flask app that serves the API, 
 The repository is instrumented with a `devcontainer.json` that when activated gives you a prebuilt environment with all dependencies installed.
 
 1. [Create a codespace](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=1045171010&skip_quickstart=true) with one click. Wait till it loads in new tab.
-1. You see an active VS Code terminal. Split to get 2 terminals.
+1. Setup local environment variables [as described earlier](#21-model-deployments-live-demo).
+1. You see an active VS Code terminal. Split it to get 2 terminals.
 1. **Run Backend Application** in window 1
     ```
     cd src && python app.py
@@ -392,10 +393,10 @@ The mock option is good for situations when you are offline or unable to access 
 
 ## 8. Demo Test Run
 
-The Zava model router demo can be seen in [this recording](./../docs/assets/model-router-demo.mp4) (screenshot below) - and shows the demo working with live model router and benchmark deplyoments. Let's try running the demo now. 
+The Zava model router demo can be seen in [this recording](./../session-delivery-resources/assets/model-router-demo.mp4) (screenshot below) - and shows the demo working with live model router and benchmark deplyoments. Let's try running the demo now. 
 
 
-![Mock Demo](./../docs/assets/recorded-demo.png)
+![Mock Demo](./../session-delivery-resources/assets/recorded-demo.png)
 
 
 The repository has a `devcontainer.json` with all the necessary dependencies defined. Simply launch the repo in GitHub Codespaces and wait till you have an active VS Code prompt. Then complete these steps:
@@ -431,7 +432,7 @@ To run the demo:
 
 Explore the panels and see how the UI visualizes the latency and cost implications of the model choice - highlighting how a _lightweight_ model can deliver a speedup and cost savings in response **without any user effort** in model selection or configuration.
 
-![Mock Demo](./../docs/assets/recorded-demo.png)
+![Mock Demo](./../session-delivery-resources/assets/recorded-demo.png)
 
 ### 8.2 Live Demo 
 
@@ -446,7 +447,7 @@ Now you need an `.env` with the relevant model deployment configuration.
 
 You see something like this after a few seconds of processing (spinning wheel). Note how we selected `gpt-5` as a benchmark, but the model-router was able to use `gpt-5.1-mini` for a **6.8X** speedup in response time, and a **98%** reduction in costs.
 
-![Live Demo](./../docs/assets/live-demo.png)
+![Live Demo](./../session-delivery-resources/assets/live-demo.png)
 
 ## Troubleshooting
 
