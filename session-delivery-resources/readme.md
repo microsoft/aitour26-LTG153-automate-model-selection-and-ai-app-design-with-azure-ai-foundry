@@ -2,7 +2,7 @@
 
 Welcome to the Session Delivery Guidance section for LTG153. Thank you for delivering this 15-minute theater session on the Microsoft AI Tour. Prior to delivering this session:
 
-1. Download the Presentaion from the [Files](#-files) section to your local device.
+1. Download the Presentation from the [Files](#-files) section to your local device.
 1. Fork this repository to your profile. You will use GitHub Codespaces for the demo.
 1. Go through the [src/README.md](../src/README.md) guide to setup demo ahead of time.
 1. Review the [Timing](#-timing) below to get a sense for how to pace the talk.
