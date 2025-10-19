@@ -10,7 +10,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 // Reusable Response Panel Component
-const ResponsePanel = ({ title, isLoading, result, sampleOutput, pricingData }) => {
+const ResponsePanel = ({ title, isLoading, result, sampleOutput, pricingData, isModelRouter = false }) => {
   // Get pricing from external configuration file
   const getPricing = (modelType) => {
     if (!pricingData) {
@@ -21,24 +21,60 @@ const ResponsePanel = ({ title, isLoading, result, sampleOutput, pricingData }) 
     return pricingData[modelType] || pricingData['default'] || { input_per_1m: 5.00, output_per_1m: 15.00 };
   };
 
-  const calculateCost = (promptTokens, completionTokens, modelType) => {
-    const pricing = getPricing(modelType);
-    const promptCost = (promptTokens / 1000000) * pricing.input_per_1m;
-    const completionCost = (completionTokens / 1000000) * pricing.output_per_1m;
-    const totalCost = promptCost + completionCost;
-    
-    return {
-      promptCost: promptCost.toFixed(6),
-      completionCost: completionCost.toFixed(6),
-      totalCost: totalCost.toFixed(6),
-      pricing: pricing
-    };
+  // Get Model Router pricing specifically
+  const getModelRouterPricing = () => {
+    if (!pricingData) {
+      return { input_per_1m: 0.14, output_per_1m: 0.00 };
+    }
+    return pricingData['model-router'] || { input_per_1m: 0.14, output_per_1m: 0.00 };
+  };
+
+  const calculateCost = (promptTokens, completionTokens, modelType, isModelRouter = false) => {
+    if (isModelRouter) {
+      // Model Router cost = (Router input + Underlying input) * input tokens + Underlying output * output tokens
+      const routerPricing = getModelRouterPricing();
+      const underlyingPricing = getPricing(modelType);
+      
+      const combinedInputPrice = routerPricing.input_per_1m + underlyingPricing.input_per_1m;
+      const outputPrice = underlyingPricing.output_per_1m; // Only underlying model charges for output
+      
+      const promptCost = (promptTokens / 1000000) * combinedInputPrice;
+      const completionCost = (completionTokens / 1000000) * outputPrice;
+      const totalCost = promptCost + completionCost;
+      
+      return {
+        promptCost: promptCost.toFixed(6),
+        completionCost: completionCost.toFixed(6),
+        totalCost: totalCost.toFixed(6),
+        pricing: {
+          input_per_1m: combinedInputPrice,
+          output_per_1m: outputPrice,
+          router_input_per_1m: routerPricing.input_per_1m,
+          underlying_input_per_1m: underlyingPricing.input_per_1m,
+          underlying_output_per_1m: outputPrice
+        }
+      };
+    } else {
+      // Standard pricing for non-router models
+      const pricing = getPricing(modelType);
+      const promptCost = (promptTokens / 1000000) * pricing.input_per_1m;
+      const completionCost = (completionTokens / 1000000) * pricing.output_per_1m;
+      const totalCost = promptCost + completionCost;
+      
+      return {
+        promptCost: promptCost.toFixed(6),
+        completionCost: completionCost.toFixed(6),
+        totalCost: totalCost.toFixed(6),
+        pricing: pricing
+      };
+    }
   };
 
   const costData = result ? calculateCost(
     result.prompt_tokens || 0,
     result.completion_tokens || 0,
-    result.model_type || 'default'
+    result.model_type || 'default',
+    isModelRouter
   ) : null;
 
   const chartData = {
@@ -129,14 +165,39 @@ const ResponsePanel = ({ title, isLoading, result, sampleOutput, pricingData }) 
                      <Typography variant="body2" sx={{ color: 'primary.main', fontWeight: 600 }}>
                        <strong>💰 Cost Analysis:</strong>
                      </Typography>
-                    <Typography variant="body2">
-                      <strong>Input Cost:</strong> ${costData.promptCost} 
-                      <span style={{ color: '#666', fontSize: '0.85em' }}> (${costData.pricing.input_per_1m}/1M tokens)</span>
-                    </Typography>
-                    <Typography variant="body2">
-                      <strong>Output Cost:</strong> ${costData.completionCost} 
-                      <span style={{ color: '#666', fontSize: '0.85em' }}> (${costData.pricing.output_per_1m}/1M tokens)</span>
-                    </Typography>
+                    {isModelRouter && costData.pricing.router_input_per_1m !== undefined ? (
+                      // Model Router cost breakdown
+                      <>
+                        <Typography variant="body2">
+                          <strong>Input Cost:</strong> ${costData.promptCost}
+                        </Typography>
+                        <Typography variant="body2" sx={{ ml: 2, fontSize: '0.85em', color: '#666' }}>
+                          • Router: ${costData.pricing.router_input_per_1m}/1M tokens
+                        </Typography>
+                        <Typography variant="body2" sx={{ ml: 2, fontSize: '0.85em', color: '#666' }}>
+                          • Underlying Model: ${costData.pricing.underlying_input_per_1m}/1M tokens
+                        </Typography>
+                        <Typography variant="body2" sx={{ ml: 2, fontSize: '0.85em', color: '#666' }}>
+                          • Combined: ${costData.pricing.input_per_1m}/1M tokens
+                        </Typography>
+                        <Typography variant="body2">
+                          <strong>Output Cost:</strong> ${costData.completionCost} 
+                          <span style={{ color: '#666', fontSize: '0.85em' }}> (${costData.pricing.output_per_1m}/1M tokens - underlying model only)</span>
+                        </Typography>
+                      </>
+                    ) : (
+                      // Standard cost display
+                      <>
+                        <Typography variant="body2">
+                          <strong>Input Cost:</strong> ${costData.promptCost} 
+                          <span style={{ color: '#666', fontSize: '0.85em' }}> (${costData.pricing.input_per_1m}/1M tokens)</span>
+                        </Typography>
+                        <Typography variant="body2">
+                          <strong>Output Cost:</strong> ${costData.completionCost} 
+                          <span style={{ color: '#666', fontSize: '0.85em' }}> (${costData.pricing.output_per_1m}/1M tokens)</span>
+                        </Typography>
+                      </>
+                    )}
                      <Typography variant="body2" sx={{ fontWeight: 600, color: 'primary.main' }}>
                        <strong>Total Cost: ${costData.totalCost}</strong>
                      </Typography>
@@ -479,9 +540,16 @@ function App() {
                             <Typography variant="body2" color="success.contrastText" sx={{ fontWeight: 600, mb: 1 }}>Model Router Cost</Typography>
                             <Typography variant="h5" sx={{ color: 'primary.main', fontWeight: 700 }}>
                               {(() => {
-                                const routerPricing = pricingData[routingResult.model_type] || pricingData['default'] || { input_per_1m: 2.00, output_per_1m: 6.00 };
-                                const cost = (routingResult.prompt_tokens / 1000000) * routerPricing.input_per_1m + (routingResult.completion_tokens / 1000000) * routerPricing.output_per_1m;
-                                return `$${cost.toFixed(6)}`;
+                                // Model Router cost = (Router input + Underlying input) * input tokens + Underlying output * output tokens
+                                const routerPricing = pricingData['model-router'] || { input_per_1m: 0.14, output_per_1m: 0.00 };
+                                const underlyingPricing = pricingData[routingResult.model_type] || pricingData['default'] || { input_per_1m: 1.25, output_per_1m: 10.00 };
+                                
+                                const combinedInputPrice = routerPricing.input_per_1m + underlyingPricing.input_per_1m;
+                                const inputCost = (routingResult.prompt_tokens / 1000000) * combinedInputPrice;
+                                const outputCost = (routingResult.completion_tokens / 1000000) * underlyingPricing.output_per_1m;
+                                const totalCost = inputCost + outputCost;
+                                
+                                return `$${totalCost.toFixed(6)}`;
                               })()}
                             </Typography>
                           </Box>
@@ -491,7 +559,8 @@ function App() {
                             <Typography variant="body2" color="success.contrastText" sx={{ fontWeight: 600, mb: 1 }}>Benchmark Cost</Typography>
                             <Typography variant="h5" sx={{ color: 'error.main', fontWeight: 700 }}>
                               {(() => {
-                                const benchmarkPricing = pricingData[benchmarkResult.model_type] || pricingData['default'] || { input_per_1m: 20.00, output_per_1m: 60.00 };
+                                // Use actual model pricing for benchmark responses
+                                const benchmarkPricing = pricingData[benchmarkResult.model_type] || pricingData['default'] || { input_per_1m: 1.25, output_per_1m: 10.00 };
                                 const cost = (benchmarkResult.prompt_tokens / 1000000) * benchmarkPricing.input_per_1m + (benchmarkResult.completion_tokens / 1000000) * benchmarkPricing.output_per_1m;
                                 return `$${cost.toFixed(6)}`;
                               })()}
@@ -503,11 +572,20 @@ function App() {
                             <Typography variant="body2" color="success.contrastText">Cost Savings</Typography>
                             <Typography variant="h6" sx={{ color: 'success.contrastText', fontWeight: 700 }}>
                               {(() => {
-                                const routerPricing = pricingData[routingResult.model_type] || pricingData['default'] || { input_per_1m: 2.00, output_per_1m: 6.00 };
-                                const benchmarkPricing = pricingData[benchmarkResult.model_type] || pricingData['default'] || { input_per_1m: 20.00, output_per_1m: 60.00 };
-                                const routerCost = (routingResult.prompt_tokens / 1000000) * routerPricing.input_per_1m + (routingResult.completion_tokens / 1000000) * routerPricing.output_per_1m;
+                                // Model Router cost = (Router input + Underlying input) * input tokens + Underlying output * output tokens
+                                const routerPricing = pricingData['model-router'] || { input_per_1m: 0.14, output_per_1m: 0.00 };
+                                const routerUnderlyingPricing = pricingData[routingResult.model_type] || pricingData['default'] || { input_per_1m: 1.25, output_per_1m: 10.00 };
+                                
+                                const routerCombinedInputPrice = routerPricing.input_per_1m + routerUnderlyingPricing.input_per_1m;
+                                const routerInputCost = (routingResult.prompt_tokens / 1000000) * routerCombinedInputPrice;
+                                const routerOutputCost = (routingResult.completion_tokens / 1000000) * routerUnderlyingPricing.output_per_1m;
+                                const routerTotalCost = routerInputCost + routerOutputCost;
+                                
+                                // Benchmark cost (standard pricing)
+                                const benchmarkPricing = pricingData[benchmarkResult.model_type] || pricingData['default'] || { input_per_1m: 1.25, output_per_1m: 10.00 };
                                 const benchmarkCost = (benchmarkResult.prompt_tokens / 1000000) * benchmarkPricing.input_per_1m + (benchmarkResult.completion_tokens / 1000000) * benchmarkPricing.output_per_1m;
-                                const savings = ((benchmarkCost - routerCost) / benchmarkCost * 100).toFixed(1);
+                                
+                                const savings = benchmarkCost > 0 ? ((benchmarkCost - routerTotalCost) / benchmarkCost * 100).toFixed(1) : '0.0';
                                 return `${savings}%`;
                               })()}
                             </Typography>
@@ -572,6 +650,7 @@ function App() {
                         result={routingResult}
                         sampleOutput={!routingResult ? output : null}
                         pricingData={pricingData}
+                        isModelRouter={true}
                       />
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -581,6 +660,7 @@ function App() {
                         result={benchmarkResult}
                         sampleOutput={null}
                         pricingData={pricingData}
+                        isModelRouter={false}
                       />
                     </Grid>
                   </Grid>

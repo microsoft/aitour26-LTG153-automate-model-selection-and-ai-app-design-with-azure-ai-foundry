@@ -6,9 +6,9 @@
   },
   "models": {
     "model-router": {
-      "input_per_1m": 0.00,
+      "input_per_1m": 0.14,
       "output_per_1m": 0.00,
-      "description": "Model Router"
+      "description": "Model Router - Input processing cost only, output handled by underlying model"
     },
     "Mock GPT-5 Benchmark": {
       "input_per_1m": 1.25,
