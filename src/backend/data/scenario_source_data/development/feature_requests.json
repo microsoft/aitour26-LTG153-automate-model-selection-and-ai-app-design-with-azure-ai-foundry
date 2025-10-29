@@ -1,0 +1,7 @@
+[
+  {"id": "FR-001", "request": "Please add a dark mode to the app. It would be much easier on the eyes at night."},
+  {"id": "FR-002", "request": "I'd love to be able to pay with Apple Pay."},
+  {"id": "FR-003", "request": "The mobile app needs an offline mode. I often use it in places with no internet connection."},
+  {"id": "FR-004", "request": "Can you add support for more payment options, like PayPal?"},
+  {"id": "FR-005", "request": "A widget for the home screen would be amazing."}
+]

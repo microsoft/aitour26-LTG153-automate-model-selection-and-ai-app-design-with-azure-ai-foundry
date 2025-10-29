@@ -1,0 +1,21 @@
+**Zava Inc. - Form 10-Q - For the quarterly period ended September 30, 2025**
+
+**Item 1. Legal Proceedings**
+
+...Except as described below, the Company is not a party to any material pending legal proceedings...
+
+**Item 2. Risk Factors**
+
+...An investment in our common stock involves a high degree of risk. You should carefully consider the risks described below, together with all of the other information included in this report...
+
+*Risks Related to our Business and Industry*
+
+Our success depends on our ability to protect and enforce our intellectual property rights. We rely on a combination of patent, trademark, and trade secret laws to protect our proprietary technology, including the Auracore™ Fiber technology. Unauthorized use of our intellectual property by third parties may damage our brand and competitive position.
+
+*Risks Related to Data Privacy*
+
+Our products, particularly those in the smart home and healthcare sectors, may collect and store sensitive user data. A failure to comply with data privacy regulations, such as GDPR or CCPA, or a data breach, could result in significant fines, reputational damage, and a loss of customer trust. Our current disclosures on data retention policies in section 4.2 may not be sufficiently detailed to meet evolving regulatory standards.
+
+*Risks Related to Litigation*
+
+As noted in section 4.2, we are party to ongoing litigation with NanoTech Solutions Inc. regarding alleged patent infringement related to our smart fabric technology. While we believe our position is defensible, an unfavorable outcome could result in monetary damages or restrictions on our ability to sell certain products.

@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "jsx": "react-jsx",
+      "esModuleInterop": true,
+      "lib": ["ES2017", "DOM"],
+      "module": "ESNext",
+      "moduleResolution": "bundler",
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./src/*"]
+      }
+    }
+  }

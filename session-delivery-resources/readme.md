@@ -22,8 +22,8 @@ The figure below provides a high-level look at the slide-deck, organized into ro
 | | |
 
 **Important:** 
-- The demo can run in live (models) or mock (synthetic data) modes
-- Prioritize live mode - unless you have challenges in setup or access
+- The demo can run in live mode or offline mode. Offline mode "replays" real examples, simulating the timings and behaviour of the models.
+- Prioritize live mode - unless you have challenges in setup or access. Offline mode only requires setting up the frontend, and does not require API keys or model deployments.
 - If you have challenges with both demos - show the [recording](./assets/model-router-demo.mp4) instead.
 
 
@@ -33,7 +33,7 @@ The figure below provides a high-level look at the slide-deck, organized into ro
 
 ## 📁 Files
 
-Use the MP4 pre-recorded demo as a backup if your live demo does not work. The file has no audio - so you can embed it in your deck and talk through it interactively.
+Use the MP4 pre-recorded demo as a backup if your live demo does not work, and the offline mode also does not work.
 
 | Resources          | Links                            | Description |
 |-------------------|----------------------------------|-------------------|
@@ -45,18 +45,74 @@ Use the MP4 pre-recorded demo as a backup if your live demo does not work. The f
 <br/>
 
 
-## 🚀 Demo Quickstart
-
-Start by completing these two steps in the Demo Guide.
-
-1. [Setup AI Project with Model Deployments](./../src/README.md#21-model-deployments-live-demo) - deploy model-router and gpt-5.
-1. [Launch GitHub Codespaces](./../src/README.md#31-using-github-codespaces-recommended) - complete these steps to launch applications.
+## 🚀 Demo Talk Track
 
 
-You should now see a front-end UI you can interact with.
-- Select a department 
-- Submit a sample prompt
-- Wait for the right side to refresh to compare execution
-- Analyze how model-router perfoms w.r.t. benchmark model
 
-![demo](./assets/live-demo.png)
+**Option 1: Local Installation**
+
+Run the demo locally, complete these two steps:
+1. Review the [Demo Setup Guide](./../src/README.md) for complete installation instructions.
+
+**Option 2: Hosted Demo**
+
+A hosted version of the demo is available at [https://aka.ms/model-router-demo](https://aka.ms/model-router-demo). However, uptime is not guaranteed. This demo will be supported until 31/12/2025, potentially beyond.
+
+#### Introduction
+Today, we’ll be exploring the Azure Model Router and how it can intelligently route your LLM queries to the best model every time. With so many models available in the Azure AI Foundry catalogue, it can be challenging to know which one to choose for a specific request. The Model Router simplifies this process, helping you save costs, improve latency, and maintain strong, accurate results.
+
+#### An industry example for business decision makers
+To understand why this matters, let’s look at an example in the context of an eCommerce Store. Zava is our fictitious sports tech company that sells clothing integrated with technologies to help athletes improve their performance. On the Zava website, we have a chatbot that answers customer questions about Zava products.
+
+Let's imagine you have set up the chatbot to use GPT-5- a very powerful, but slower LLM. When a customer asks a simple question like, “What’s the main difference between the Elite and Speed cleats?”, the response takes a long time.
+
+![ZavaSportswear](./assets/ZavaSportswear.png)
+
+_===Navigate to "Zava Sportswear Demo" in the sidebar===_
+
+_===Choose "Benchmark Model" from the drop down in the chatbot window.===_
+
+_===Click the label "What's the main difference between the Elite and Speed cleats?"===_
+
+_===DO NOT SAY ANYTHING WHILE THE SPINNER LOADS THE RESPONSE. Make it really uncomfortable with the around 6 seconds of silence===_
+
+That felt uncomfortable, didn't it? This is how your customers feel when they are waiting for a response from your Generative AI applications.
+
+Let's now look at an example where we use the model router.
+_===Click the reset icon in the chatbot window. The model router is chosen by default in the drop down.===_
+
+_===Click the label "What's the main difference between the Elite and Speed cleats?"===_
+
+Now let's see how the Model Router quickly responds by routing the query to a smaller, faster model. This is much better!
+
+As you saw earlier, the Model Router was quick because it selected a smaller model. However, when the query is more complex—such as when a customer is upset and the system needs to interrogate underlying data— the router switches to a more capable model like GPT‑5 Mini. 
+
+_===Click the reset icon in the chatbot window. The model router is chosen by default in the drop down.===_
+
+_===Click the label "I'm thinking about cancelling my membership. Do you even know why I'm so annoyed?"===_
+
+This ensures accuracy without sacrificing speed unnecessarily. We don’t want to trade off accuracy for speed, so the router intelligently decides which model to use.
+
+#### Metrics for technical decision makers
+To see how much better this approach is, let’s run a scenario involving invoice processing. 
+
+![ModelRouterComparison](./assets/ModelRouterComparison.png)
+
+_===Navigate to "Model Router Comparison" in the sidebar===_
+
+_===Click Invoice Processing and then click the "Analyze with Both Models + Accuracy" button===_
+
+Here, the Model Router responded in about 3 seconds, with GPT-5 taking 15 seconds. The cost savings were significant—about 97% of the cost— and the response was 5.1 times faster. Depending on complexity, the Model Router can sometimes be three to five times faster. You can explore these scenarios in the tool provided. 
+
+However accuracy is critical. It’s no good if a solution is faster or cheaper but fails to deliver accurate results. After processing, the tool provides an accuracy comparison and shows the ground truth. You can see that the responses were similar, so there was no loss of quality.
+
+#### BYO Benchmarking for getting hands on
+
+![DatasetEvaluation](./assets/DatasetEvaluation.png)
+
+_===Navigate to "Dataset Evaluation" in the sidebar===_
+
+You can even test your own scenarios by typing them in and adding your ground truth for evaluation. For larger tests, you can upload a dataset using the sample CSV provided. It’s limited to about 12 rows because running these analyses takes time and incurs cost, so it’s designed for sampling. Once uploaded, you’ll see results similar to the example dataset shown here. Across all scenarios in this repository, the Model Router was on average 76% faster, 95% cheaper, and maintained the same level of accuracy— which is fantastic.
+
+#### Conclusion
+So, if you’re unsure which model to choose or how to apply models dynamically for scenarios involving both simple and complex prompts, use the Azure Model Router to simplify building your generative AI applications.

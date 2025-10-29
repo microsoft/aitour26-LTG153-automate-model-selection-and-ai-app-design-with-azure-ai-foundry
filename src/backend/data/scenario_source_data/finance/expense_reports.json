@@ -1,0 +1,6 @@
+[
+  {"report_id": 1041, "employee_id": "E123", "item": "Airfare", "amount": 450.00, "has_receipt": true, "policy_max": 600.00},
+  {"report_id": 1042, "employee_id": "E456", "item": "Hotel", "amount": 1200.00, "has_receipt": true, "policy_max": 900.00},
+  {"report_id": 1043, "employee_id": "E123", "item": "Meal", "amount": 75.00, "has_receipt": true, "policy_max": 100.00},
+  {"report_id": 1055, "employee_id": "E789", "item": "Meal", "amount": 350.00, "has_receipt": false, "policy_max": 100.00}
+]

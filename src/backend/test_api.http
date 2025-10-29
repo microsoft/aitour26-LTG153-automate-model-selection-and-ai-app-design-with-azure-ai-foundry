@@ -1,0 +1,3 @@
+
+### Test the provider numbers endpoint with a valid UUID
+GET http://localhost:8000/
