@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-dotenv
+python-multipart
+httpx
+gunicorn
+reportlab
+azure-storage-blob
+azure-cosmos
+pydantic[email]
+openai
+PyPDF2
+pytz
+azure-keyvault-secrets

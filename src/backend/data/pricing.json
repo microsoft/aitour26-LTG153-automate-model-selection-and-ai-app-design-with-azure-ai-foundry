@@ -1,0 +1,54 @@
+{
+  "pricing_info": {
+    "description": "Model pricing configuration per 1M tokens (input/output)",
+    "last_updated": "2025-10-20",
+    "currency": "USD"
+  },
+  "models": {
+    "gpt-5-2025-08-07": {
+      "input_per_1m": 1.25,
+      "output_per_1m": 10.00,
+      "description": "GPT-5 2025-08-07 Global standard (GA)"
+    },
+    "gpt-5-mini-2025-08-07": {
+      "input_per_1m": 0.25,
+      "output_per_1m": 2.00,
+      "description": "GPT-5-mini 2025-08-07 Global standard (GA)"
+    },
+    "gpt-5-nano-2025-08-07": {
+      "input_per_1m": 0.05,
+      "output_per_1m": 0.40,
+      "description": "GPT-5-nano 2025-08-07 Global standard (GA)"
+    },
+    "gpt-5-chat-latest": {
+      "input_per_1m": 1.25,
+      "output_per_1m": 10.00,
+      "description": "GPT-5-chat 2025-08-07 Global standard (Preview)"
+    },
+    "gpt-4.1-2025-04-14": {
+      "input_per_1m": 2.00,
+      "output_per_1m": 8.00,
+      "description": "GPT-4.1 2025-04-14 Global standard (GA)"
+    },
+    "gpt-4.1-mini-2025-04-14": {
+      "input_per_1m": 0.40,
+      "output_per_1m": 1.60,
+      "description": "GPT-4.1-mini 2025-04-14 Global standard (GA)"
+    },
+    "gpt-4.1-nano-2025-04-14": {
+      "input_per_1m": 0.10,
+      "output_per_1m": 0.40,
+      "description": "GPT-4.1-nano 2025-04-14 Global standard (GA)"
+    },
+    "o4-mini-2025-04-16": {
+      "input_per_1m": 1.10,
+      "output_per_1m": 4.40,
+      "description": "o4-mini 2025-04-16 Global standard (GA)"
+    },
+    "default": {
+      "input_per_1m": 5.00,
+      "output_per_1m": 15.00,
+      "description": "Default fallback pricing"
+    }
+  }
+}

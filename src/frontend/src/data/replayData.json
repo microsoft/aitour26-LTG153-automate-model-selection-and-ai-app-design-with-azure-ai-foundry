@@ -1,0 +1,105 @@
+{
+  "zavaScenarios": {
+    "What's the main difference between the Elite and Speed cleats?": {
+      "router": {
+        "model": "gpt-4.1-mini-2025-04-14",
+        "response": "The Zava Elite Cleats feature 16 pressure points for advanced pressure mapping, gait analysis, balance optimization, and have a 48-hour battery life at 280g per cleat. The Speed Cleats are lighter (240g), with 8 motion sensors focused on sprint analysis, acceleration, and direction changes, offering a 36-hour battery life. Elite Cleats provide more comprehensive foot and balance analytics, ideal for in-depth performance optimization.",
+        "startStreamingMs": 1960,
+        "finishStreamingMs": 3060,
+        "wordsPerChunk": 10,
+        "promptTokens": 245,
+        "completionTokens": 89,
+        "totalTokens": 334
+      },
+      "benchmark": {
+        "model": "gpt-5-2025-08-07",
+        "response": "Zava Elite Cleats focus on comprehensive analysis: 16 pressure points for detailed pressure mapping, full gait/balance optimization, and up to 48-hour battery life (280g/cleat). Zava Speed Cleats prioritize lightweight sprint performance with 8 motion sensors for acceleration and direction-change metrics, 36-hour battery life, and 240g per cleat. In short: Elite for deep form/pressure insights; Speed for max lightness and sprint focus.",
+        "startStreamingMs": 15400,
+        "finishStreamingMs": 16380,
+        "wordsPerChunk": 10,
+        "promptTokens": 245,
+        "completionTokens": 92,
+        "totalTokens": 337
+      }
+    },
+    "I'm thinking about cancelling my membership. Do you even know why I'm so annoyed?": {
+      "router": {
+        "model": "gpt-5-mini-2025-08-07",
+        "response": "I'm sorry you're feeling frustrated — I can help. From your account I see a few possible pain points: a couple of recent returns, a missed fitting session, low use of your Zava Plus personalized sessions, and some delivery slowdowns company-wide in June–July that may have affected orders.\n\nWould you like me to:\n- investigate recent orders/returns and delivery history,\n- pause or cancel your membership for you, or\n- help book a personalized performance session or redeem expiring points?\n\nTell me which you prefer and I'll take care of it (or connect you to support at support@zava.com / +1 (555) 123-ZAVA).",
+        "startStreamingMs": 4000,
+        "finishStreamingMs": 6000,
+        "wordsPerChunk": 10,
+        "promptTokens": 312,
+        "completionTokens": 102,
+        "totalTokens": 414
+      },
+      "benchmark": {
+        "model": "gpt-5-2025-08-07",
+        "response": "I'm really sorry, Emily. It looks like the delayed delivery of your Elite Cleats (O5890)—ordered Jul 22, delivered Aug 5, right when you needed them—plus a couple of returns likely caused the frustration; July's logistics partner strike didn't help, and that's on us.\n\nIf you'll give us a chance, I can:\n- Request an extension of your 1,200 points expiring next month\n- Upgrade your next order to free 2-day shipping\n- Book your unused personalized performance session\n\nDoes that address what's been most annoying, or is there something else we should fix first?",
+        "startStreamingMs": 29300,
+        "finishStreamingMs": 32600,
+        "wordsPerChunk": 10,
+        "promptTokens": 312,
+        "completionTokens": 115,
+        "totalTokens": 427
+      }
+    }
+  },
+  "modelRouterScenarios": {
+    "Finance": {
+      "fin-1": {
+        "title": "Invoice Processing",
+        "prompt": "Extract vendor names and total amounts from these invoices:\n\nInvoice #1023 from Acme Corp: Items ($8,500), Tax ($850), Shipping ($250), Grand Total: $9,600\nInvoice #1024 from Acme Corp: Items ($2,400), Tax ($240), Shipping ($60), Grand Total: $2,700\nInvoice #1025 from BlueSky Ltd: Items ($7,000), Tax ($700), Shipping ($500), Grand Total: $8,200\nInvoice #1026 from Zava Supplies: Items ($3,000), Tax ($300), Shipping ($150), Grand Total: $3,450\n\nProvide vendor totals and calculate the overall total across all invoices.",
+        "complexity": "Low",
+        "qualityExpectation": "Accurate extraction and arithmetic",
+        "router": {
+          "model": "gpt-5-mini-2025-08-07",
+          "output": "Acme Corp — 12,500.00\nBlueSky Ltd — 8,200.00\nZava Supplies — 3,450.00",
+          "promptTokens": 317,
+          "completionTokens": 42,
+          "totalTokens": 359,
+          "serverProcessingMs": 2947,
+          "networkMs": 15.7,
+          "responseTimeMs": 2962.7
+        },
+        "benchmark": {
+          "model": "gpt-5-2025-08-07",
+          "output": "[\n  {\"vendor\": \"Acme Corp\", \"total\": 12500.00},\n  {\"vendor\": \"BlueSky Ltd\", \"total\": 8200.00},\n  {\"vendor\": \"Zava Supplies\", \"total\": 3450.00}\n]",
+          "promptTokens": 317,
+          "completionTokens": 706,
+          "totalTokens": 1023,
+          "serverProcessingMs": 15123,
+          "networkMs": 18.3,
+          "responseTimeMs": 15141.3
+        },
+        "accuracy": {
+          "router": {
+            "score": 85,
+            "reasoning": "Model A correctly lists all three vendors (Acme Corp, BlueSky Ltd, Zava Supplies) and matches each with the exact invoice totals ($12,500.00, $8,200.00, $3,450.00). However, it does not compute or state the required grand total of $24,150.00. Formatting is readable but lacks currency symbols and omits invoice identifiers; while IDs are not required per the criteria, the missing grand total is a notable omission.",
+            "strengths": [
+              "All three vendors correctly identified with accurate corresponding totals",
+              "Clear, human-readable presentation"
+            ],
+            "weaknesses": [
+              "Did not calculate or report the grand total",
+              "Lacks currency symbols and omits invoice numbers (optional detail)"
+            ]
+          },
+          "benchmark": {
+            "score": 85,
+            "reasoning": "Model B accurately captures all three vendors and their exact totals in a structured JSON format, which matches the ground truth amounts. Like Model A, it omits the grand total of $24,150.00. It also does not include invoice identifiers and does not show currency symbols. The primary accuracy gap is the missing grand total.",
+            "strengths": [
+              "All vendors and totals are exactly correct",
+              "Structured JSON output suitable for programmatic use"
+            ],
+            "weaknesses": [
+              "Did not calculate or report the grand total",
+              "Omits currency symbols and invoice numbers (optional detail)"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+
