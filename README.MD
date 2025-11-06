@@ -79,6 +79,13 @@ Additional Languages Coming Soon
 </b></sub></a><br />
             <a href="https://github.com/nitya" title="talk">📢</a> 
     </td>
+    <td align="center"><a href="http://github.com/luca-stamatescu">
+        <img src="https://github.com/luca-stamatescu.png" width="100px;" alt="LUCA STAMATESCU"
+"/><br />
+        <sub><b>LUCA STAMATESCU
+</b></sub></a><br />
+            <a href="https://github.com/luca-stamatescu" title="talk">📢</a> 
+    </td>
 </tr></table>
 
 ## 
