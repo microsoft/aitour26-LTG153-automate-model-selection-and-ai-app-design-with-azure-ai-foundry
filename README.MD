@@ -15,7 +15,7 @@ If you will be delivering this session, check the [session-delivery-sources](./s
 
 > Full Title: <br/> **Automate model selection with Microsoft Foundry Model Router - to fast-track cost efficiencies and win big**
 
-As 85% of enterprises embrace multi-model AI strategies, developers face growing complexity in selecting, deploying, and managing the right models for each task. In this session, discover how the model router in Azure AI Foundry intelligently automates model selection based on performance, cost, and latency. This intelligent orchestration layer reduces operational overhead, accelerates deployment, and unlocks scalable AI operations across your organization. Say goodbye to model fatigue and let the router do the strategic lifting. 
+As 85% of enterprises embrace multi-model AI strategies, developers face growing complexity in selecting, deploying, and managing the right models for each task. In this session, discover how the model router in Microsoft Foundry intelligently automates model selection based on performance, cost, and latency. This intelligent orchestration layer reduces operational overhead, accelerates deployment, and unlocks scalable AI operations across your organization. Say goodbye to model fatigue and let the router do the strategic lifting. 
 
 
 ### 🧠 Learning Outcomes
